@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Leave Request</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<style>
+    * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', system-ui, sans-serif;
+}
+
+body {
+    background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+    min-height: 100vh;
+    padding: 2rem;
+}
+
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+    background: white;
+    border-radius: 20px;
+    box-shadow: 0 20px 40px rgba(211, 195, 47, 0.1);
+    overflow: hidden;
+}
+
+.header {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    padding: 1.5rem 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: white;
+}
+
+#welcomeMessage {
+    font-size: 1.4rem;
+    font-weight: 500;
+}
+
+.btn-logout {
+    background: rgba(255, 255, 255, 0.2);
+    border: none;
+    padding: 0.5rem 1.2rem;
+    color: white;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.btn-logout:hover {
+    background: rgba(255, 255, 255, 0.3);
+    transform: translateY(-2px);
+}
+
+.content {
+    padding: 2rem;
+}
+
+.form-section {
+    background: #f8fafc;
+    padding: 2rem;
+    border-radius: 15px;
+    margin-bottom: 2rem;
+}
+
+h2 {
+    color: #48432d;
+    margin-bottom: 1.5rem;
+    font-weight: 600;
+    
+}
+
+.form-group {
+    margin-bottom: 1.5rem;
+}
+
+label {
+    display: block;
+    color: #4a5568;
+    margin-bottom: 0.5rem;
+    font-weight: 500;
+}
+
+input {
+    width: 100%;
+    padding: 0.75rem;
+    border: 2px solid #e2e8f0;
+    border-radius: 10px;
+    transition: all 0.3s ease;
+    font-size: 1rem;
+}
+
+input:focus {
+    border-color: #667eea;
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+}
+
+.btn-submit {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    padding: 0.75rem 2rem;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    font-size: 1rem;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    width: 100%;
+}
+
+.btn-submit:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+}
+
+.leave-list {
+    display: grid;
+    gap: 1rem;
+    margin-top: 1rem;
+}
+
+.leave-item {
+    background: white;
+    padding: 1.5rem;
+    border-radius: 12px;
+    border: 1px solid #e2e8f0;
+    transition: all 0.3s ease;
+}
+
+.leave-item:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+.leave-item-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+}
+
+.leave-reason {
+    font-weight: 600;
+    color: #2d3748;
+}
+
+.leave-status {
+    padding: 0.25rem 1rem;
+    border-radius: 50px;
+    font-size: 0.875rem;
+    font-weight: 500;
+}
+
+.status-pending {
+    background: #fef3c7;
+    color: #92400e;
+}
+
+.status-approved {
+    background: #dcfce7;
+    color: #166534;
+}
+
+.status-rejected {
+    background: #fee2e2;
+    color: #991b1b;
+}
+
+.leave-details {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1rem;
+    color: #64748b;
+    font-size: 0.875rem;
+}
+
+.detail-item {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+}
+
+.detail-label {
+    font-weight: 500;
+    color: #94a3b8;
+}
+
+.detail-value {
+    color: #475569;
+}
+
+@media (max-width: 640px) {
+    .container {
+        margin: 0;
+        border-radius: 0;
+    }
+
+    .content {
+        padding: 1rem;
+    }
+
+    .leave-details {
+        grid-template-columns: 1fr;
+    }
+}
+</style>
+
+<body>
+    <div class="container">
+        <div class="header">
+            <h2 id="welcomeMessage"></h2>
+            <button id="logoutButton" class="btn-logout">Log-out</button>
+        </div>
+        
+        <div class="content">
+            <div class="form-section">
+                <h2>Submit Leave Request</h2>
+                <form id="leaveRequestForm" class="form">
+                    <div class="form-group">
+                        <label for="reason">Reason for Leave</label>
+                        <input type="text" id="reason" name="reason" required placeholder="Enter your leave reason">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="dateFrom">Start Date</label>
+                        <input type="date" id="dateFrom" name="dateFrom" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="numOfDays">Number of Days</label>
+                        <input type="number" id="numOfDays" name="numOfDays" required min="1">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="applicationDate">Application Date</label>
+                        <input type="date" id="applicationDate" name="applicationDate" required>
+                    </div>
+
+                    <button type="submit" class="btn-submit">Submit Request</button>
+                </form>
+            </div>
+
+            <h2>Your Leave Requests</h2>
+            <div id="leaveRequests" class="leave-list"></div>
+        </div>
+    </div>
+
+    <script> 
+        document.addEventListener('DOMContentLoaded', async function () {
+            const loggedInUser = JSON.parse(localStorage.getItem('loggedInUser'));
+        
+            if (!loggedInUser) {
+                alert('You must log in first!');
+                window.location.href = 'login.html';
+                return;
+            }
+            console.log(loggedInUser);
+    
+            if(loggedInUser.role== 'Admin'){
+                window.location.href ='managerLeaveManagement.html';
+            }
+        
+            const welcomeMessage = document.getElementById('welcomeMessage');
+            welcomeMessage.textContent = `Welcome, ${loggedInUser.firstName} ${loggedInUser.lastName}`;
+        
+            const logoutButton = document.getElementById('logoutButton');
+            logoutButton.addEventListener('click', function () {
+                localStorage.removeItem('loggedInUser');
+                alert('You have been logged out.');
+                window.location.href = '/login';
+            });
+        
+            const leaveRequestForm = document.getElementById('leaveRequestForm');
+            const leaveRequestsList = document.getElementById('leaveRequests');
+        
+            leaveRequestForm.addEventListener('submit', async function (event) {
+                event.preventDefault();
+        
+                const reason = document.getElementById('reason').value;
+                const dateFrom = document.getElementById('dateFrom').value;
+                const numOfDays = document.getElementById('numOfDays').value;
+                const applicationDate = document.getElementById('applicationDate').value;
+        
+                if (new Date(applicationDate) >= new Date(dateFrom)) {
+                    alert('Application date must be earlier than the leave start date.');
+                    return;
+                }
+        
+                const newLeaveRequest = {
+                    employeeId: loggedInUser.employeeId,
+                    reason,
+                    dateFrom,
+                    numOfDays,
+                    applicationDate,
+                    status: 'Pending'
+                };
+        
+                try {
+                    const response = await fetch('http://localhost:3000/leaveRequests', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify(newLeaveRequest)
+                    });
+        
+                    if (response.ok) {
+                        alert('Leave request submitted successfully!');
+                        leaveRequestForm.reset();
+                        loadLeaveRequests(loggedInUser.employeeId);
+                    } else {
+                        alert('Failed to submit leave request.');
+                    }
+                } catch (error) {
+                    console.error('Error:', error);
+                    alert('An error occurred while submitting the leave request.');
+                }
+            });
+        
+            async function loadLeaveRequests(employeeId) {
+                try {
+                    const response = await fetch(`http://localhost:3000/leaveRequests?employeeId=${employeeId}`);
+                    const leaveRequests = await response.json();
+        
+                    leaveRequestsList.innerHTML = '';
+                    leaveRequests.forEach(request => {
+                        const li = document.createElement('div');
+                        li.className = 'leave-item';
+                        li.innerHTML = `
+                                    <div class="leave-item-header">
+                                        <span class="leave-reason">${request.reason}</span>
+                                        <span class="leave-status status-${request.status.toLowerCase()}">${request.status}</span>
+                                    </div>
+                                    <div class="leave-details">
+                                        <div class="detail-item">
+                                            <span class="detail-label">Start Date</span>
+                                            <span class="detail-value">${new Date(request.dateFrom).toLocaleDateString()}</span>
+                                        </div>
+                                        <div class="detail-item">
+                                            <span class="detail-label">Duration</span>
+                                            <span class="detail-value">${request.numOfDays} days</span>
+                                        </div>
+                                        <div class="detail-item">
+                                            <span class="detail-label">Applied On</span>
+                                            <span class="detail-value">${new Date(request.applicationDate).toLocaleDateString()}</span>
+                                        </div>
+                                    </div>
+                                `;
+                        leaveRequestsList.appendChild(li);
+                    });
+                } catch (error) {
+                    console.error('Error:', error);
+                }
+            }
+        
+            loadLeaveRequests(loggedInUser.employeeId);
+        });
+        
+        
+        
+        function logout() {
+    localStorage.clear();
+    sessionStorage.clear();
+    window.location.href = './login.html';}
+document.getElementById('logoutButton').onclick = logout;
+</script>
+</body>
+
+</html>

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Company Navbar</title>
+    <link rel="stylesheet" href="/static/css/styles.css">
+    <!-- Add font-awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    {{style}}
+</head>
+
+<body>
+    <nav class="navbar">
+        <div class="navbar-left">
+            <a href="/" class="company-name">
+                <img src="/static/css/revenue.png" alt="Azra Company Logo" class="company-logo"> AZRA Company
+            </a>
+        </div>
+
+        <div class="navbar-right">
+            <!-- <a href="/employees" class="menu-item">Employee</a> -->
+            <!-- <div class="dropdown"> -->
+                <!-- <button class="dropbtn"> -->
+                   <!-- <a href="/login" class="menu-item"><i class="fa fa-sign-in"></i> Login </a> -->
+                <!-- </button> -->
+                <!-- <div class="dropdown-content">
+                    <a href="/frontend/views/leaves/login.html"><i class="fas fa-sign-in-alt"></i> Apply Leave</a>
+                    <a href="/leaves/managerLeaveManagement"><i class="fas fa-cogs"></i> Manage Leave</a>
+                </div> -->
+            </div>
+        </div>
+    </nav>
+
+    <main>
+      {{content}}  
+    </main>
+    {{script}}
+
+    <div class="scr"></div>
+</body>
+
+</html>

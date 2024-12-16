@@ -1,0 +1,179 @@
+/* General Reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Arial, Helvetica, sans-serif;
+  margin: 0;
+  padding: 0;
+  background-image: url('./leave1.png');
+  /*background: linear-gradient(135deg, #582956, #6b2985); /* Gradient Background 
+  background-size: 100%;*/
+  color: #fff;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background-repeat: no-repeat;
+}
+
+/* Navbar */
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #05203f;
+  padding: 15px 30px;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+  z-index: 100;
+  position: sticky;
+  top: 0;
+  width: 100%;
+}
+
+.company-name {
+  color: #fff;
+  font-size: 24px;
+  text-decoration: none;
+  font-weight: bold;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.navbar-right {
+  display: flex;
+  align-items: center;
+}
+
+.menu-item {
+  margin: 0 15px;
+  padding: 10px 20px;
+  background-color: #630f26;
+  color: #fff;
+  border-radius: 5px;
+  font-size: 1rem;
+  text-decoration: none;
+  transition: background-color 0.3s ease;
+  text-align: center;
+}
+
+.menu-item:hover {
+  background-color: #f1f1f1;
+  color: #630f26;
+}
+
+.dropdown {
+  position: relative;
+}
+
+.dropbtn {
+  color: white;
+  padding: 14px 20px;
+  background: #05203f;
+  border: none;
+  cursor: pointer;
+  font-size: 18px;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+}
+
+.dropbtn i {
+  margin-right: 8px;
+}
+
+.dropbtn:hover {
+  background-color: #630f26;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #fff;
+  min-width: 160px;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+  z-index: 1;
+  border-radius: 5px;
+  overflow: hidden;
+  transition: all 0.3s ease;
+}
+
+.dropdown-content a {
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  font-size: 16px;
+}
+
+.dropdown-content a i {
+  margin-right: 10px;
+}
+
+.dropdown-content a:hover {
+  background-color: #f1f1f1;
+}
+
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+
+/* Page content */
+main {
+  flex-grow: 1;
+  padding: 30px;
+  background: rgba(224, 221, 221, 0.9);
+  border-radius: 8px;
+  margin: 30px;
+}
+
+/* Header Text Styling */
+h1 {
+  text-align: center;
+  color: #000;
+  margin-top: 5px;
+  font-size: 60px;
+  text-transform: uppercase;
+}
+
+/* Animated Background Effect */
+.scr {
+  background-image: url('frontend/layouts/image/leaveMa.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  width: 100%;
+  height: 400px;
+  position: relative;
+  filter: blur(5px);
+  animation: pulse 3s infinite ease-in-out;
+}
+
+/* Animation Keyframes */
+@keyframes pulse {
+  0% { transform: scale(1); opacity: 0.7; }
+  50% { transform: scale(1.05); opacity: 1; }
+  100% { transform: scale(1); opacity: 0.7; }
+}
+
+/* Footer Text or Additional Elements */
+.scr::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.3);  /* Dark overlay for better contrast */
+  z-index: 0;
+}
+
+.company-logo {
+  width: 70px; /* Adjust the size of the logo */
+  height: auto;
+  margin-right: 10px; /* Space between the logo and the text */
+  vertical-align: middle;
+}
